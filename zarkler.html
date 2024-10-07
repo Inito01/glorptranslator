@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon" />
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              alien: "#487463",
+              alienLight: "#a0d29e",
+              alienDark: "#225149",
+            },
+          },
+          fontFamily: {
+            sans: ["Inter", "sans-serif"],
+          },
+        },
+      };
+    </script>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <title>TraductorGlorpVorp</title>
+  </head>
+  <body class="flex items-center justify-center min-h-screen bg-gray-100">
+    <div class="absolute inset-0 bg-emerald-300 bg-[size:20px_20px] opacity-20 blur-[100px] pointer-events-none"></div>
+    <div class="w-full max-w-7xl p-4">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div class="text-center justify-center flex flex-col">
+          <h1 class="text-3xl lg:text-4xl font-bold text-alien">Traductor GlorpVorp</h1>
+          <p class="s-scramble text-sm lg:text-lg mb-8">Traduce entre español y GlorpVorp</p>
+          <img class="mx-auto lg:w-56 w-40" src="/assets/favicon.ico" alt="Alien" />
+          <p class="text-gray-500">&#129506; Bryan &#129506;</p>
+        </div>
+
+        <div class="w-full p-4 bg-white rounded-lg shadow-md shadow-slate-300">
+          <!-- Tabs -->
+          <ul class="flex flex-wrap text-sm font-medium text-center text-alienDark border-b border-gray-200">
+            <li id="tab-es-glorp" class="me-2 active">
+              <a href="#" aria-current="page" class="inline-block p-4 text-alien bg-gray-200 rounded-t-lg">
+                <div class="tab" data-tab="es-glorp">Español a Glorp</div>
+              </a>
+            </li>
+            <li id="tab-glorp-es" class="me-2">
+              <a href="#" aria-current="page" class="inline-block p-4 text-alien rounded-t-lg">
+                <div class="tab" data-tab="glorp-es">Glorp a Español</div>
+              </a>
+            </li>
+          </ul>
+
+          <!-- Formularios -->
+          <div id="es-glorp" class="tab-content active">
+            <div class="flex flex-col mt-4">
+              <label for="spanish" class="text-lg text-alien font-bold">Español</label>
+              <textarea
+                id="spanish"
+                class="w-full h-32 p-2 mt-2 border border-gray-300 rounded-md border-green-700"
+                placeholder="Ingresa tu texto en español aquí."
+              ></textarea>
+            </div>
+            <div class="flex flex-col mt-4">
+              <label for="glorp" class="text-lg text-alien font-bold">GlorpVorp</label>
+              <textarea
+                id="glorp"
+                class="w-full h-32 p-2 mt-2 border border-gray-300 rounded-md border-green-700"
+                placeholder="Tu texto en Glorp aparecerá aquí."
+                readonly
+              ></textarea>
+            </div>
+            <div class="flex justify-end mt-4">
+              <button
+                id="translate-es-glorp"
+                class="px-4 py-2 text-white bg-alien rounded-2xl shadow-md shadow-slate-300"
+              >
+                Traducir &#x1F47D;
+              </button>
+            </div>
+          </div>
+          <div id="glorp-es" class="tab-content hidden">
+            <div class="flex flex-col mt-4">
+              <label for="glorp-input" class="text-lg text-alien font-bold">GlorpVorp</label>
+              <textarea
+                id="glorp-input"
+                class="w-full h-32 p-2 mt-2 border border-gray-300 rounded-md border-green-700"
+                placeholder="Ingresa tu texto en Glorp aquí."
+              ></textarea>
+            </div>
+            <div class="flex flex-col mt-4">
+              <label for="spanish-output" class="text-lg text-alien font-bold">Español</label>
+              <textarea
+                id="spanish-output"
+                class="w-full h-32 p-2 mt-2 border border-gray-300 rounded-md border-green-700"
+                placeholder="Tu texto en español aparecerá aquí."
+                readonly
+              ></textarea>
+            </div>
+            <div class="flex justify-end mt-4">
+              <button
+                id="translate-glorp-es"
+                class="px-4 py-2 text-white bg-alien rounded-2xl shadow-md shadow-slate-300 translate"
+              >
+                Traducir &#x1F47D;
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+      $(document).ready(function () {
+        $("li").click(function () {
+          var tabId = $(this).find(".tab").data("tab");
+          $(".tab-content").addClass("hidden").removeClass("active");
+          $("#" + tabId)
+            .removeClass("hidden")
+            .addClass("active");
+
+          $("li").removeClass("active");
+          $(this).addClass("active");
+
+          $("a").removeClass("text-alienDark bg-gray-200");
+          $(this).find("a").addClass("text-alienDark bg-gray-200");
+
+          $("textarea").val("");
+        });
+      });
+    </script>
+    <script src="vorp.js"></script>
+  </body>
+</html>
