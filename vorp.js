@@ -1,36 +1,53 @@
-// --------------------------------------------
-function espanolGlorp(texto) {
-  return texto.split("").reverse().join("");
+"use strict";
+
+let diccionario = {};
+
+fetch("dictionary.json")
+  .then((response) => response.json())
+  .then((data) => {
+    diccionario = data;
+  })
+  .catch((error) => console.error("Error al cargar el diccionario:", error));
+
+function espanolAGlorp(texto) {
+  return texto
+    .toLowerCase()
+    .split("")
+    .map((char) => diccionario[char] || char)
+    .join("");
+}
+
+function glorpAEspanol(texto) {
+  const diccionarioInvertido = Object.fromEntries(Object.entries(diccionario).map(([key, value]) => [value, key]));
+  return texto
+    .toLowerCase()
+    .split("")
+    .map((char) => diccionarioInvertido[char] || char)
+    .join("");
 }
 
 function manejarTraduccionEspanol() {
   const inputTextarea = document.getElementById("spanish");
   const outputTextarea = document.getElementById("glorp");
   const textoOriginal = inputTextarea.value;
-  const textoInvertido = espanolGlorp(textoOriginal);
-  outputTextarea.value = textoInvertido;
+  const textoTraducido = espanolAGlorp(textoOriginal);
+  outputTextarea.value = textoTraducido;
   inputTextarea.value = "";
 }
 
 document.getElementById("translate-es-glorp").addEventListener("click", manejarTraduccionEspanol);
 
-// ---------------------------------------------
-function glorpEspanol(texto) {
-  return texto.split("").reverse().join("");
-}
-
 function manejarTraduccionGlorp() {
   const inputTextarea = document.getElementById("glorp-input");
   const outputTextarea = document.getElementById("spanish-output");
   const textoOriginal = inputTextarea.value;
-  const textoInvertido = glorpEspanol(textoOriginal);
-  outputTextarea.value = textoInvertido;
+  const textoTraducido = glorpAEspanol(textoOriginal);
+  outputTextarea.value = textoTraducido;
   inputTextarea.value = "";
 }
 
 document.getElementById("translate-glorp-es").addEventListener("click", manejarTraduccionGlorp);
 
-// Text Scramble
 class TextScramble {
   constructor(el) {
     this.el = el;
@@ -86,13 +103,13 @@ class TextScramble {
 }
 
 const phrases = [
-  "Vip vop,",
-  "solo tengo una misión",
-  "destruir a todos los humanos",
-  "y conquistar la tierra",
-  "pero primero",
-  "debo aprender a hablar",
-  "su idioma",
+  "⎐⊸⌿ ⎐⍜⌿",
+  "⌇⍜⌰⍜ ⏁⍦⋏☌⍜ ⎍⋏⏃ ⋔⊸⌇⊸⍜⋏",
+  "◫⍦⌇⏁ও⎍⊸ও ⏃ ⏁⍜◫⍜⌇ ⌰⍜⌇ ⊑⎍⋔⏃⋏⍜⌇",
+  "⊬ ☊⍜⋏⍾⎍⊸⌇⏁⏃ও ⌰⏃ ⏁⊸⍦ওও⏃",
+  "⌿⍦ও⍜ ⌿ও⊸⋔⍦ও⍜",
+  "◫⍦⏚⍜ ⏃⌿ও⍦⋏◫⍦ও ⏃ ⊑⏃⏚⌰⏃ও",
+  "⌇⎍ ⊸◫⊸⍜⋔⏃",
 ];
 
 const el = document.querySelector(".s-scramble");
