@@ -1,5 +1,26 @@
 "use strict";
 
+// SI, HAY JQUERY Y JS PURO EN EL MISMO ARCHIVO, NO ME JUZGUEN
+// NO HAY TIEMPO PARA HACERLO DE OTRA FORMA
+
+$(document).ready(function () {
+  $("li").click(function () {
+    var tabId = $(this).find(".tab").data("tab");
+    $(".tab-content").addClass("hidden").removeClass("active");
+    $("#" + tabId)
+      .removeClass("hidden")
+      .addClass("active");
+
+    $("li").removeClass("active");
+    $(this).addClass("active");
+
+    $("a").removeClass("text-alienDark bg-gray-200");
+    $(this).find("a").addClass("text-alienDark bg-gray-200");
+
+    $("textarea").val("");
+  });
+});
+
 let diccionario = {};
 
 fetch("dictionary.json")
