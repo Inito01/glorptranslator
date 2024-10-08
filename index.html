@@ -43,8 +43,9 @@
         <div class="text-center justify-center flex flex-col">
           <h1 class="text-3xl lg:text-4xl font-bold text-alien">Traductor GlorpVorp</h1>
           <p class="s-scramble text-sm lg:text-lg mb-8">Traduce entre español y GlorpVorp</p>
-          <img class="mx-auto lg:w-56 w-40" src="./assets/favicon.ico" alt="Alien" />
-          <p class="text-gray-500">&#129506; ⏚ও⊬⏃⋏ &#129506;</p>
+          <!-- Ahora le agregué sombra a la imagen -->
+          <img class="mx-auto w-80 mb-4 lg:w-96 lg:mb-8 shadow" src="./assets/licence.png" alt="Alien" />
+          <p class="text-gray-500">&#129506; ⏚ও⊬⏃⋏ &#129309; ⏚⌰⏃⋏☊⏃ &#127800;</p>
         </div>
 
         <div class="w-full p-4 bg-white rounded-lg shadow-md shadow-slate-300">
@@ -121,26 +122,6 @@
       </div>
     </div>
 
-    <!-- Scripts -->
-    <script>
-      $(document).ready(function () {
-        $("li").click(function () {
-          var tabId = $(this).find(".tab").data("tab");
-          $(".tab-content").addClass("hidden").removeClass("active");
-          $("#" + tabId)
-            .removeClass("hidden")
-            .addClass("active");
-
-          $("li").removeClass("active");
-          $(this).addClass("active");
-
-          $("a").removeClass("text-alienDark bg-gray-200");
-          $(this).find("a").addClass("text-alienDark bg-gray-200");
-
-          $("textarea").val("");
-        });
-      });
-    </script>
     <script src="vorp.js"></script>
   </body>
 </html>
