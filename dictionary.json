@@ -1,4 +1,5 @@
 {
+  "dictionary": {
     "a": "⏃",
     "b": "⏚",
     "c": "☊",
@@ -26,4 +27,11 @@
     "x": "⌽",
     "y": "⊬",
     "z": "⋉"
+  },
+  "credentials": [
+    {
+      "username": "vlorp",
+      "password": "708d21914c268db1e5a26fa251e4d8a63da990bdb092a3bd51a995c435cdcfba"
+    }
+  ]
 }
